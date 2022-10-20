@@ -1,5 +1,6 @@
 import { menuArray } from "/data.js"
 
+// global variables
 let order = []
 let uniqueOrder = []
 const form = document.getElementById("form")
@@ -13,6 +14,7 @@ document.addEventListener('click', function(e) {
     }
 })
 
+// add function
 function handleAddItem(itemId) {
     const newItem = menuArray.filter((item) => item.id === Number(itemId))[0]
     order.push(newItem)
@@ -21,6 +23,7 @@ function handleAddItem(itemId) {
     getOrderHTML(order, uniqueOrder)
 }
 
+// pre-order state function to render elements and calculate price
 function getOrderHTML(arr1, arr2) {
     let totalPrice = 0
     let orderHTML = ``
@@ -54,14 +57,15 @@ function getOrderHTML(arr1, arr2) {
     pay()
 }
 
+// function to render payment form
 function completeOrder() {
     const completeOrder = document.getElementById('complete-order')
     completeOrder.addEventListener('click', function(){
      form.style.display = 'flex'
-    })
-    
+    })  
 }
 
+// function to complete payment
 function pay() {
     const payBtn = document.getElementById("pay")
     const name = document.getElementById("name")
@@ -79,12 +83,14 @@ function pay() {
     
 }
 
+// handle remove function
 function handleRemove(itemId) {
     uniqueOrder = uniqueOrder.filter(item => item.id !== Number(itemId))
     order = order.filter(item => item.id !== Number(itemId))
     getOrderHTML(order, uniqueOrder)
 }
 
+// render default HTML 
 function getFeedHTML() {
     let feedHTML = ``
     
